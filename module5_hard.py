@@ -19,14 +19,14 @@ class UrTube:
 
     def log_in(self, nickname, password):
         for i in range(len(self.users) - 1):
-            if self.users[i].nickmame == nickname and hash(self.users[i].password) == hash(password):
+            if self.users[i].nickmame == nickname and self.users[i].password == hash(password):
                 self.current_user = self.users[i]
                 print(f'Добро пожаловать {self.users[i].nickmame}')
             else:
                 print('Логин или пароль неверны')
 
     def register(self, nickname, password, age):
-        new_user = User(nickname, password, age)
+        new_user = User(nickname, hash(password), age)
         if len(self.users) <= 1:
             self.users.append(new_user)
             self.current_user = new_user
